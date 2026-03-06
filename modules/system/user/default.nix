@@ -8,7 +8,6 @@
       "wheel"
       "docker"
       "input"
-      "networkmanager"
       "audio"
       "video"
     ];

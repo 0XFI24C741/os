@@ -8,12 +8,16 @@
     GDK_BACKEND = "wayland";
   };
 
+  services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
   services.accounts-daemon.enable = true;
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
     config.common.default = "*";
   };
 

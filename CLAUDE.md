@@ -52,4 +52,4 @@ flake.nix
 - System modules use `home-manager.useGlobalPkgs = true` and `home-manager.useUserPackages = false`.
 - `specialArgs` passes `{ inputs }` to system modules and `{ inputs; username; realname }` to home-manager modules.
 - Two LSP servers for Nix are installed: `nixd` (preferred) and `nil`.
-- `devenv` is installed system-wide; bash is configured to auto-stop devenv services when leaving a project directory.
+- Evaluation warnings (e.g., deprecated `xorg.*` renames) may originate from upstream flake inputs — particularly `quickshell` (transitive dep of DankMaterialShell) which is pinned to a specific rev and can lag behind nixpkgs-unstable API changes. If `grep` finds nothing locally, investigate upstream inputs.

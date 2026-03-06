@@ -8,7 +8,6 @@
     spotify
     steam
     thunderbird
-    devenv
 
     bind
     binutils
@@ -31,8 +30,6 @@
     wpa_supplicant_gui
     xwayland-satellite
     wl-clipboard
-
-    bibata-cursors
   ];
 
   programs.direnv = {

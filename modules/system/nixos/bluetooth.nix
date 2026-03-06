@@ -7,6 +7,4 @@
   };
 
   services.blueman.enable = true;
-
-  environment.systemPackages = [ pkgs.blueman ];
 }
