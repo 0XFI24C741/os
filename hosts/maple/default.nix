@@ -9,6 +9,12 @@
 
   networking.hostName = "maple";
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;
+  };
+
   home-manager.users."fractal" = {
     imports = [ ../../modules/home ];
 

@@ -8,7 +8,6 @@
     emacs-pgtk
     zed-editor
     discord
-    claude-code
     (dbvisualizer.overrideAttrs (old: {
       installPhase = builtins.replaceStrings [ "${openjdk17}" ] [ "${openjdk21}" ] old.installPhase;
     }))
@@ -22,11 +21,18 @@
 
     postman
     obsidian
-    synology-drive-client
+    (pkgs.symlinkJoin {
+      name = "synology-drive-client";
+      paths = [ synology-drive-client ];
+      nativeBuildInputs = [ makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/synology-drive \
+          --set QT_QPA_PLATFORM xcb
+      '';
+    })
 
     ripgrep
     fd
-    jq
     eza
     curl
     wget
