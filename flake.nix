@@ -27,10 +27,16 @@
         modules = [ ./hosts/feywild ];
         specialArgs = args;
       };
+
+      maple = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [ ./hosts/maple ];
+        specialArgs = args;
+      };
     in
     {
       nixosConfigurations = {
-        inherit feywild;
+        inherit feywild maple;
       };
     };
 

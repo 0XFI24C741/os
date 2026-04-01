@@ -13,6 +13,8 @@
     jq
     python3
     kitty
+    helix
+    claude-code
 
     bind
     binutils
@@ -37,6 +39,7 @@
     wpa_supplicant_gui
     xwayland-satellite
     wl-clipboard
+    cups-pk-helper
   ];
 
   programs.direnv = {
@@ -46,16 +49,6 @@
 
   programs.xwayland.enable = true;
 
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
 
   programs._1password.enable = true;
   programs._1password-gui = {

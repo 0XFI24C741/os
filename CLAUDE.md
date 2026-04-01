@@ -5,11 +5,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Key Commands
 
 ```bash
-# Apply system + home-manager changes
-sudo nixos-rebuild switch --flake .#feywild
+# Apply system + home-manager changes (use the host matching this machine)
+sudo nixos-rebuild switch --flake .#feywild   # feywild (LUKS-encrypted laptop)
+sudo nixos-rebuild switch --flake .#maple     # maple (desktop)
 
 # Build without activating (dry run)
 sudo nixos-rebuild build --flake .#feywild
+sudo nixos-rebuild build --flake .#maple
 
 # Check flake syntax and evaluation
 nix flake check
@@ -26,7 +28,11 @@ nix search nixpkgs <package>
 
 ## Architecture
 
-This is a single-host NixOS flake configuration for the machine `feywild` (x86_64-linux) running on `nixpkgs-unstable`.
+This is a multi-host NixOS flake configuration (x86_64-linux) running on `nixpkgs-unstable`.
+
+**Hosts:**
+- `feywild` — laptop with LUKS-encrypted root + swap
+- `maple` — desktop with plain ext4, no swap
 
 **Flake inputs:**
 - `nixpkgs` → `nixos-unstable`
@@ -36,19 +42,35 @@ This is a single-host NixOS flake configuration for the machine `feywild` (x86_6
 **Module tree:**
 ```
 flake.nix
-└── hosts/feywild/          ← host entry point (hardware + imports system + home-manager)
-    modules/system/         ← NixOS system configuration
-    ├── nixos/              ← boot, audio (PipeWire), bluetooth, locale, network, nix settings, virtualization
-    ├── desktop/            ← Niri (Wayland) + SDDM + GNOME + fonts
-    ├── packages/           ← system packages + direnv + Steam + 1Password
-    └── user/               ← user `fractal` with groups (wheel, docker, audio, etc.)
-    modules/home/           ← Home Manager configuration for user `fractal`
-    ├── desktop/            ← DankMaterialShell, cursor theme, XDG MIME defaults
-    └── pkgs/               ← user packages (zed-editor, claude-code, ripgrep, etc.) + bash config
+├── hosts/feywild/          ← laptop host (LUKS + swap, hardware + imports shared modules)
+├── hosts/maple/            ← desktop host (plain ext4, hardware + imports shared modules + gaming)
+│   modules/gaming/          ← maple-only: Steam, Proton-GE, Gamescope, GameMode, MangoHUD, corectrl, controllers
+│   modules/system/         ← shared NixOS system configuration
+│   ├── nixos/              ← boot, audio (PipeWire), bluetooth, locale, network, nix settings, virtualization
+│   ├── desktop/            ← Niri (Wayland) + SDDM + GNOME + fonts
+│   ├── packages/           ← system packages + direnv + 1Password
+│   └── user/               ← user `fractal` with groups (wheel, docker, audio, etc.)
+│   modules/home/           ← shared Home Manager configuration for user `fractal`
+│   ├── desktop/            ← DankMaterialShell, cursor theme, XDG MIME defaults
+│   └── pkgs/               ← user packages (zed-editor, claude-code, ripgrep, etc.) + bash config
 ```
 
+**Host-specific module convention:**
+- `modules/system/default.nix` auto-imports all its subdirectories — any new dir there applies to both hosts.
+- For host-specific modules, create them at `modules/<name>/` (top-level, not under `modules/system/`) and import explicitly from the host's `default.nix`.
+- Established pattern: `modules/gaming/` (maple-only).
+
+**Hardware:**
+- `maple` — AMD Ryzen (Granite Ridge) + AMD Radeon RX 7700 XT / 7800 XT (RDNA 3), open-source amdgpu/Mesa/RADV
+- `feywild` — AMD CPU, open-source amdgpu/Mesa/RADV
+- No proprietary GPU drivers on either host.
+
+**Gotchas:**
+- Nix flakes only evaluate git-tracked files. New files must be `git add`-ed before `nix flake check` or `nixos-rebuild` can see them — otherwise you get "path does not exist" errors.
+
 **Important notes:**
-- `configuration.nix` in the repo root is the original generated file; it is **not imported by the flake** and is kept for reference only. All active configuration flows through `hosts/feywild/`.
+- `configuration.nix` in the repo root is the original generated file; it is **not imported by the flake** and is kept for reference only. All active configuration flows through `hosts/<hostname>/`.
+- Host-specific config (LUKS, hardware) lives in `hosts/<hostname>/`; shared modules live in `modules/`.
 - System modules use `home-manager.useGlobalPkgs = true` and `home-manager.useUserPackages = false`.
 - `specialArgs` passes `{ inputs }` to system modules and `{ inputs; username; realname }` to home-manager modules.
 - Two LSP servers for Nix are installed: `nixd` (preferred) and `nil`.
