@@ -2,15 +2,17 @@
 
 {
   environment.systemPackages = with pkgs; [
+    gcc
     alacritty
     firefox
     slack
     spotify
-    steam
     thunderbird
     kdePackages.dolphin
     kdePackages.ark
-
+    jq
+    python3
+    kitty
 
     bind
     binutils
