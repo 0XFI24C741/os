@@ -6,4 +6,7 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # Periodic SSD TRIM (weekly systemd timer).
+  services.fstrim.enable = true;
 }

@@ -5,7 +5,6 @@
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     QT_QPA_PLATFORM = "wayland";
-    GDK_BACKEND = "wayland";
   };
 
   services.upower.enable = true;
@@ -18,7 +17,7 @@
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
-    config.common.default = "*";
+    config.common.default = [ "gnome" "gtk" ];
   };
 
   services.gnome.gnome-keyring.enable = true;
