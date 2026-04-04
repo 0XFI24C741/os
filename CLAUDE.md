@@ -51,7 +51,7 @@ flake.nix
 │   ├── packages/           ← system packages + direnv + 1Password
 │   └── user/               ← user `fractal` with groups (wheel, docker, audio, etc.)
 │   modules/home/           ← shared Home Manager configuration for user `fractal`
-│   ├── desktop/            ← DankMaterialShell, cursor theme, XDG MIME defaults
+│   ├── desktop/            ← DankMaterialShell (full declarative config: theming, panel, notifications, power, lock screen, fonts, launcher), cursor theme, XDG MIME defaults
 │   └── pkgs/               ← user packages (zed-editor, claude-code, ripgrep, etc.) + bash config
 ```
 

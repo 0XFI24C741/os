@@ -24,8 +24,83 @@
     enable = true;
 
     systemd = {
-      enable = true; # Systemd service for auto-start
-      restartIfChanged = true; # Auto-restart dms.service when dank-material-shell changes
+      enable = true;
+      restartIfChanged = true;
+    };
+
+    enableDynamicTheming = true;
+    enableSystemMonitoring = true;
+    enableAudioWavelength = true;
+    enableVPN = true;
+    enableCalendarEvents = true;
+    enableClipboardPaste = true;
+
+    settings = {
+      # Theming — dynamic wallpaper-based colors via matugen
+      matugenScheme = "scheme-tonal-spot";
+      cornerRadius = 12;
+      popupTransparency = 1.0;
+      enableRippleEffects = true;
+
+      # Animations
+      animationSpeed = 1; # Short
+      syncComponentAnimationSpeeds = true;
+
+      # Panel widgets — all enabled
+      showLauncherButton = true;
+      showWorkspaceSwitcher = true;
+      showFocusedWindow = true;
+      showWeather = true;
+      showMusic = true;
+      showClipboard = true;
+      showCpuUsage = true;
+      showMemUsage = true;
+      showCpuTemp = true;
+      showGpuTemp = true;
+      showSystemTray = true;
+      showClock = true;
+      showNotificationButton = true;
+      showBattery = true;
+      showControlCenterButton = true;
+      showCapsLockIndicator = true;
+
+      # Clock — 12h, no padding, no seconds
+      use24HourClock = false;
+      showSeconds = false;
+      padHours12Hour = false;
+
+      # Dock — disabled
+      showDock = false;
+
+      # Notifications — bottom-right, compact, with history
+      notificationPopupPosition = 3; # Right = bottom-right
+      notificationCompactMode = true;
+      notificationHistoryEnabled = true;
+
+      # Power management
+      acSuspendBehavior = 0; # Suspend
+      batterySuspendBehavior = 0; # Suspend
+      lockBeforeSuspend = true;
+      nightModeEnabled = true;
+
+      # Lock screen — everything visible
+      lockScreenShowTime = true;
+      lockScreenShowDate = true;
+      lockScreenShowProfileImage = true;
+      lockScreenShowMediaPlayer = true;
+      lockScreenShowPowerActions = true;
+      lockScreenShowSystemIcons = true;
+      lockScreenShowPasswordField = true;
+
+      # Fonts
+      fontFamily = "Berkeley Mono";
+      monoFontFamily = "PragmataPro Mono Liga";
+      fontScale = 1.0;
+
+      # Launcher
+      appLauncherViewMode = "list";
+      sortAppsAlphabetically = true;
+      launcherLogoMode = "nix";
     };
   };
 
