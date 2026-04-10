@@ -7,8 +7,8 @@
     slack
     spotify
     thunderbird
-    kdePackages.dolphin
-    kdePackages.ark
+    nautilus
+    file-roller
     jq
     python3
     kitty

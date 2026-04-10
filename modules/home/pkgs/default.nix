@@ -3,6 +3,7 @@
   imports = [
     ./alacritty
     ./bash
+    ./starship
   ];
 
   home.packages = with pkgs; [
