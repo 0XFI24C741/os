@@ -22,6 +22,7 @@
 
     postman
     obsidian
+    koodo-reader
     (pkgs.symlinkJoin {
       name = "synology-drive-client";
       paths = [ synology-drive-client ];

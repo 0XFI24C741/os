@@ -26,7 +26,7 @@
   services.xserver = {
     enable = true;
     xkb.layout = "us,ru";
-    xkb.options = "";
+    xkb.options = "grp:win_space_toggle";
 
     autoRepeatDelay = 300;
     autoRepeatInterval = 25;

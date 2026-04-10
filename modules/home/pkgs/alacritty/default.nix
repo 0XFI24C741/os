@@ -7,7 +7,7 @@
 
       font = {
         normal.family = "PragmataPro Mono Liga";
-        size = 13;
+        size = 15;
       };
 
       colors.draw_bold_text_with_bright_colors = true;
@@ -16,14 +16,20 @@
 
       window = {
         decorations = "None";
-        padding = { x = 12; y = 12; };
+        padding = {
+          x = 12;
+          y = 12;
+        };
         opacity = 0.85;
       };
 
       scrolling.history = 3023;
 
       cursor = {
-        style = { shape = "Block"; blinking = "On"; };
+        style = {
+          shape = "Block";
+          blinking = "On";
+        };
         blink_interval = 500;
         unfocused_hollow = true;
       };
@@ -33,13 +39,41 @@
       bell.duration = 0;
 
       keyboard.bindings = [
-        { key = "C";      mods = "Control|Shift"; action = "Copy"; }
-        { key = "V";      mods = "Control|Shift"; action = "Paste"; }
-        { key = "N";      mods = "Control|Shift"; action = "SpawnNewInstance"; }
-        { key = "Equals"; mods = "Control|Shift"; action = "IncreaseFontSize"; }
-        { key = "Minus";  mods = "Control";       action = "DecreaseFontSize"; }
-        { key = "Key0";   mods = "Control";       action = "ResetFontSize"; }
-        { key = "Return"; mods = "Shift";         chars = "\n"; }
+        {
+          key = "C";
+          mods = "Control|Shift";
+          action = "Copy";
+        }
+        {
+          key = "V";
+          mods = "Control|Shift";
+          action = "Paste";
+        }
+        {
+          key = "N";
+          mods = "Control|Shift";
+          action = "SpawnNewInstance";
+        }
+        {
+          key = "Equals";
+          mods = "Control|Shift";
+          action = "IncreaseFontSize";
+        }
+        {
+          key = "Minus";
+          mods = "Control";
+          action = "DecreaseFontSize";
+        }
+        {
+          key = "Key0";
+          mods = "Control";
+          action = "ResetFontSize";
+        }
+        {
+          key = "Return";
+          mods = "Shift";
+          chars = "\n";
+        }
       ];
     };
   };

@@ -129,8 +129,10 @@
         let
           firefox = "firefox.desktop";
           slack = "slack.desktop";
+          koodo = "koodo-reader.desktop";
         in
         {
+          "application/epub+zip" = koodo;
           "application/pdf" = firefox;
           "application/x-extension-htm" = firefox;
           "application/x-extension-html" = firefox;

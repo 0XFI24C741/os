@@ -42,27 +42,27 @@
 **Files:**
 - Modify: `modules/home/pkgs/default.nix`
 
-- [ ] Verify availability: `nix search nixpkgs koodo-reader` (should return `legacyPackages.x86_64-linux.koodo-reader`)
-- [ ] Add `koodo-reader` to the `home.packages` list in `modules/home/pkgs/default.nix` (group it near other user apps like `obsidian`)
-- [ ] Run `nix flake check` — must pass before next task
+- [x] Verify availability: `nix eval github:NixOS/nixpkgs/nixos-unstable#koodo-reader.version` → `"2.2.4"`
+- [x] Add `koodo-reader` to the `home.packages` list in `modules/home/pkgs/default.nix` (grouped next to `obsidian`)
+- [x] Run `nix flake check` — passed (only pre-existing upstream quickshell `xorg.libxcb` warning)
 
 ### Task 2: Add EPUB MIME-type association
 
 **Files:**
 - Modify: `modules/home/desktop/default.nix`
 
-- [ ] In the `defaultApplications = let … in { … }` block at `modules/home/desktop/default.nix:128`, add `koodo = "koodo-reader.desktop";` to the `let` bindings (alongside `firefox` and `slack`)
-- [ ] Add `"application/epub+zip" = koodo;` to the attribute set
-- [ ] Run `nix flake check` — must pass before next task
+- [x] In the `defaultApplications = let … in { … }` block at `modules/home/desktop/default.nix:128`, added `koodo = "koodo-reader.desktop";` to the `let` bindings (alongside `firefox` and `slack`)
+- [x] Added `"application/epub+zip" = koodo;` to the attribute set
+- [x] Ran `nix flake check` — passed
 
 ### Task 3: Build and activate
 
-- [ ] Run `sudo nixos-rebuild build --flake .#maple` (or `.#feywild` depending on current host) to verify full build
-- [ ] Run `sudo nixos-rebuild switch --flake .#maple` (or `.#feywild`) to activate
-- [ ] Verify Koodo binary is on PATH: `which koodo-reader`
-- [ ] Confirm the `.desktop` filename assumption: `find /run/current-system/sw/share/applications ~/.nix-profile/share/applications -name '*koodo*' 2>/dev/null`
-  - ⚠️ If the actual filename is NOT `koodo-reader.desktop`, update the `koodo` let-binding in `modules/home/desktop/default.nix` to match and rebuild — see Contingency below
-- [ ] Verify MIME registration: `xdg-mime query default application/epub+zip` should return `koodo-reader.desktop`
+- [x] Ran `nixos-rebuild build --flake .#maple` — succeeded; `koodo-reader-2.2.4` fetched from cache.nixos.org, `mimeapps.list.drv` rebuilt cleanly
+- [x] Confirmed the `.desktop` filename is `koodo-reader.desktop` by inspecting `/nix/store/cv1k0r6wspzx99vqdlalwrygjikxc1ii-koodo-reader-2.2.4/share/applications/` — no contingency needed
+- [x] Verified MIME registration in the built `mimeapps.list` derivation source: `application/epub+zip=koodo-reader.desktop` is present
+- [ ] ⚠️ `sudo nixos-rebuild switch --flake .#maple` — **deferred by user**; working tree contains unrelated WIP that will be co-activated, user will run switch themselves at their discretion
+- [ ] Post-switch: verify `which koodo-reader` on PATH
+- [ ] Post-switch: verify `xdg-mime query default application/epub+zip` returns `koodo-reader.desktop`
 
 ### Task 4: Runtime verification
 
