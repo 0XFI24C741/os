@@ -7,7 +7,7 @@
 
       font = {
         normal.family = "PragmataPro Mono Liga";
-        size = 15;
+        size = 13;
       };
 
       colors.draw_bold_text_with_bright_colors = true;

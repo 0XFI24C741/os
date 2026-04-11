@@ -110,7 +110,7 @@
       # Launcher
       appLauncherViewMode = "list";
       sortAppsAlphabetically = true;
-      launcherLogoMode = "nix";
+      launcherLogoMode = "os";
     };
   };
 

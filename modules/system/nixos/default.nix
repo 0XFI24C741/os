@@ -8,6 +8,7 @@
     ./locale.nix
     ./nix.nix
     ./network.nix
+    ./nix-ld.nix
     ./virtualization.nix
   ];
 }

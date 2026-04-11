@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./niri-outputs.nix
     ../../modules/system
     ../../modules/gaming
     inputs.home-manager.nixosModules.home-manager
