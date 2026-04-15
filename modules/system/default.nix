@@ -9,7 +9,7 @@
   ];
 
   home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = false;
+  home-manager.useUserPackages = true;
   home-manager.backupFileExtension = "hm-backup";
 
   nixpkgs = {

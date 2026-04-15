@@ -14,6 +14,8 @@
     kitty
     helix
     claude-code
+    google-cloud-sdk
+    google-cloud-sql-proxy
 
     bind
     binutils
@@ -29,7 +31,6 @@
     p7zip
     killall
     man-pages
-    nix
     nixd
     nil
     playerctl
@@ -47,7 +48,6 @@
   };
 
   programs.xwayland.enable = true;
-
 
   programs._1password.enable = true;
   programs._1password-gui = {
