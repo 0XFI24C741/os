@@ -153,16 +153,16 @@ Add a fully-configured Emacs setup to the NixOS flake, split between Nix (binary
 **Files:**
 - Create: `modules/home/pkgs/emacs/lisp/init-org.el`
 
-- [ ] `org` (built-in): bind `C-c a` (agenda), `C-c c` (capture), `C-c l` (store-link)
-- [ ] Set `org-directory` to `~/org`, `org-agenda-files` to `~/org`
-- [ ] TODO workflow: `TODO(t)` → `IN-PROGRESS(i)` → `WAITING(w)` | `DONE(d)` / `CANCELLED(c)`
-- [ ] Capture templates: Task (inbox.org), Note (notes.org), Journal (journal.org datetree)
-- [ ] Refile: targets from agenda files, max level 3, outline path completion
-- [ ] Visual: `org-startup-indented`, `org-hide-leading-stars`, `org-ellipsis " ▾"`, `org-pretty-entities`
-- [ ] Babel: load languages (emacs-lisp, shell, ruby, python), disable confirm on eval
-- [ ] `org-modern`: hook `org-mode`
-- [ ] `org-appear`: hook `org-mode`
-- [ ] `(provide 'init-org)`
+- [x] `org` (built-in): bind `C-c a` (agenda), `C-c c` (capture), `C-c l` (store-link)
+- [x] Set `org-directory` to `~/org`, `org-agenda-files` to `~/org`
+- [x] TODO workflow: `TODO(t)` → `IN-PROGRESS(i)` → `WAITING(w)` | `DONE(d)` / `CANCELLED(c)`
+- [x] Capture templates: Task (inbox.org), Note (notes.org), Journal (journal.org datetree)
+- [x] Refile: targets from agenda files, max level 3, outline path completion
+- [x] Visual: `org-startup-indented`, `org-hide-leading-stars`, `org-ellipsis " ▾"`, `org-pretty-entities`
+- [x] Babel: load languages (emacs-lisp, shell, ruby, python), disable confirm on eval
+- [x] `org-modern`: hook `org-mode`
+- [x] `org-appear`: hook `org-mode`
+- [x] `(provide 'init-org)`
 
 ### Task 9: Create `lisp/init-writing.el`
 
