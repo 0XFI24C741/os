@@ -193,7 +193,7 @@ Add a fully-configured Emacs setup to the NixOS flake, split between Nix (binary
 
 ### Task 12: Update documentation
 
-- [ ] Update `CLAUDE.md` module tree to include `emacs/` under `modules/home/pkgs/`
+- [x] Update `CLAUDE.md` module tree to include `emacs/` under `modules/home/pkgs/`
 
 ## Post-Completion
 
