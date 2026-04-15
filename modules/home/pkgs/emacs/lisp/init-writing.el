@@ -17,6 +17,9 @@
   (olivetti-body-width 80))
 
 ;; ---------- Flyspell (spell checking, built-in) ------------------------------
+;; text-mode-hook also fires for org-mode (org derives from text-mode).
+;; Flyspell may flag org syntax (e.g. #+TITLE, :PROPERTIES:) as misspelled;
+;; this is acceptable — ispell-skip-region-alist can be tuned if needed.
 (use-package flyspell
   :ensure nil
   :hook ((text-mode . flyspell-mode)

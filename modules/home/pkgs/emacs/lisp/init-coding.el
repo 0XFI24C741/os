@@ -22,6 +22,7 @@
 
 ;; ---------- Eglot (LSP client, built-in) -----------------------------------
 (use-package eglot
+  :ensure nil
   :hook ((rust-ts-mode . eglot-ensure)
          (go-ts-mode   . eglot-ensure)
          (java-ts-mode . eglot-ensure)
@@ -30,7 +31,7 @@
          (html-ts-mode . eglot-ensure))
   :config
   (setq eglot-autoshutdown t)
-  (setq eglot-events-buffer-size 0)
+  (setq eglot-events-buffer-config '(:size 20000 :format short))
   (add-to-list 'eglot-server-programs '(nix-mode . ("nixd"))))
 
 ;; ---------- Dape (DAP client) ----------------------------------------------
@@ -43,19 +44,9 @@
   :config
   (envrc-global-mode 1))
 
-;; ---------- Project (built-in project management) --------------------------
-(use-package project
-  :ensure nil
-  :bind (("C-x p f" . project-find-file)
-         ("C-x p r" . project-find-regexp)
-         ("C-x p d" . project-dired)
-         ("C-x p s" . project-shell)))
-
 ;; ---------- Eldoc (built-in documentation) ---------------------------------
-(use-package eldoc
-  :ensure nil
-  :config
-  (setq eldoc-echo-area-use-multiline-p nil))
+;; Keep echo-area eldoc compact (single line).
+(setq eldoc-echo-area-use-multiline-p nil)
 
 (provide 'init-coding)
 ;;; init-coding.el ends here

@@ -47,8 +47,12 @@
      (shell      . t)
      (ruby       . t)
      (python     . t)))
-  ;; Don't prompt before evaluating src blocks
-  (setq org-confirm-babel-evaluate nil))
+  ;; Only skip confirmation for emacs-lisp blocks; prompt for shell/python/ruby.
+  ;; NOTE: emacs-lisp can still run arbitrary commands (e.g. call-process,
+  ;; shell-command), so only evaluate blocks from trusted org files.
+  (setq org-confirm-babel-evaluate
+        (lambda (lang _body)
+          (not (string= lang "emacs-lisp")))))
 
 ;; ---------- Org-modern (visual enhancements) --------------------------------
 (use-package org-modern

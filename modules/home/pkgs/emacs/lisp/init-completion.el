@@ -25,8 +25,11 @@
   (marginalia-mode 1))
 
 ;; ---------- Consult (search & navigation) ----------------------------------
+;; C-s is intentionally rebound from isearch-forward to consult-line (line
+;; search with live preview).  Use C-M-s for isearch-forward if needed.
 (use-package consult
   :bind (("C-s"   . consult-line)
+         ("C-M-s" . isearch-forward)
          ("C-x b" . consult-buffer)
          ("M-s r" . consult-ripgrep)
          ("M-s f" . consult-find)
@@ -55,8 +58,10 @@
 (use-package cape
   :demand t
   :config
-  (add-hook 'completion-at-point-functions #'cape-file)
-  (add-hook 'completion-at-point-functions #'cape-dabbrev))
+  ;; add-hook without APPEND prepends, so the last call here ends up first.
+  ;; Order: cape-file is tried first (prepended last), then cape-dabbrev.
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file))
 
 (provide 'init-completion)
 ;;; init-completion.el ends here

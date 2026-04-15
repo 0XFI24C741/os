@@ -6,6 +6,7 @@
 
 ;; ---------- Which-key (keybinding discovery) ---------------------------------
 (use-package which-key
+  :ensure nil
   :demand t
   :config
   (setq which-key-idle-delay 0.5)
@@ -32,8 +33,10 @@
   :bind ("C-=" . er/expand-region))
 
 ;; ---------- Built-in settings ------------------------------------------------
-;; Whitespace cleanup on save
-(add-hook 'before-save-hook #'whitespace-cleanup)
+;; Whitespace cleanup on save — scoped to prog-mode to avoid noisy diffs
+;; when editing files from external projects or non-code buffers.
+(add-hook 'prog-mode-hook
+          (lambda () (add-hook 'before-save-hook #'whitespace-cleanup nil t)))
 
 ;; Use short answers (y/n instead of yes/no)
 (setq use-short-answers t)
