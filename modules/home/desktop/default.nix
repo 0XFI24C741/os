@@ -16,6 +16,22 @@
     };
   };
 
+  systemd.user.services.nm-applet = {
+    Unit = {
+      Description = "NetworkManager secret agent";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
   imports = [
     inputs.dms.homeModules.dank-material-shell
   ];
