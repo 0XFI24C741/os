@@ -179,9 +179,9 @@ Add a fully-configured Emacs setup to the NixOS flake, split between Nix (binary
 **Files:**
 - Create: `modules/home/pkgs/emacs/lisp/init-vcs.el`
 
-- [ ] `magit`: bind `C-x g` → magit-status
-- [ ] `diff-hl`: `:demand t`, global mode, magit post-refresh hook
-- [ ] `(provide 'init-vcs)`
+- [x] `magit`: bind `C-x g` → magit-status
+- [x] `diff-hl`: `:demand t`, global mode, magit post-refresh hook
+- [x] `(provide 'init-vcs)`
 
 ### Task 11: Validate full build
 
