@@ -95,6 +95,12 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+    default-floating-position x=0 y=0 relative-to="bottom-right"
+    open-focused false
+}
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 

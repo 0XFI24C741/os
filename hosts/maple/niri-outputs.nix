@@ -9,7 +9,7 @@
 
     output "DP-2" {
         mode "3840x2160@59.997"
-        scale 1.5
+        scale 1.25
         position x=0 y=0
     }
   '';

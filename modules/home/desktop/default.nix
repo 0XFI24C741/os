@@ -181,4 +181,17 @@
       package = pkgs.adwaita-icon-theme;
     };
   };
+
+  # Tell Qt (used by QuickShell/DMS system tray) to use Adwaita icons.
+  # gtk.iconTheme only affects GTK apps; SNI icons in the tray are resolved
+  # via QIcon::fromTheme() which reads qt5ct/qt6ct — without this, Qt falls
+  # back to hicolor which has no nm-applet network icons.
+  xdg.configFile."qt5ct/qt5ct.conf".text = ''
+    [Appearance]
+    icon_theme=Adwaita
+  '';
+  xdg.configFile."qt6ct/qt6ct.conf".text = ''
+    [Appearance]
+    icon_theme=Adwaita
+  '';
 }
