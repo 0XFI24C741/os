@@ -7,7 +7,7 @@ in
 {
   home.packages = with pkgs; [
     emacs
-    rust-analyzer
+    # rust-analyzer is provided by rustup (modules/home/pkgs/rust/)
     lldb
     (aspellWithDicts (dicts: with dicts; [ en ]))
   ];

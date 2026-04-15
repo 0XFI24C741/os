@@ -185,11 +185,11 @@ Add a fully-configured Emacs setup to the NixOS flake, split between Nix (binary
 
 ### Task 11: Validate full build
 
-- [ ] `git add` all new files
-- [ ] Run `nix flake check`
-- [ ] Run `nixos-rebuild build --flake .#feywild` (or whichever host is current)
-- [ ] Verify no evaluation errors or conflicts
-- [ ] Run `emacs --batch -l init.el` to catch elisp load-time errors (after build)
+- [x] `git add` all new files
+- [x] Run `nix flake check`
+- [x] Run `nixos-rebuild build --flake .#feywild` (or whichever host is current)
+- [x] Verify no evaluation errors or conflicts — fixed rust-analyzer/rustup conflict by removing standalone rust-analyzer (rustup already provides it)
+- [x] emacs --batch (skipped - packages not yet installed, requires first interactive launch; load-path resolves via xdg.configFile symlinks at runtime)
 
 ### Task 12: Update documentation
 
