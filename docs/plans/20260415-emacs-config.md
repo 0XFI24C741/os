@@ -110,14 +110,14 @@ Add a fully-configured Emacs setup to the NixOS flake, split between Nix (binary
 **Files:**
 - Create: `modules/home/pkgs/emacs/lisp/init-completion.el`
 
-- [ ] `vertico`: `:demand t`, enable mode
-- [ ] `orderless`: `:demand t`, set `completion-styles`
-- [ ] `marginalia`: `:demand t`, enable mode
-- [ ] `consult`: bind `C-s` → consult-line, `C-x b` → consult-buffer, `M-s r` → consult-ripgrep, `M-s f` → consult-find, `M-y` → consult-yank-pop, `M-g g` → consult-goto-line
-- [ ] `embark` + `embark-consult`: bind `C-.` → embark-act, `C-;` → embark-dwim
-- [ ] `corfu`: `:demand t`, auto-complete with 0.2s delay, 2-char prefix, global mode
-- [ ] `cape`: add `cape-file` and `cape-dabbrev` to completion-at-point-functions
-- [ ] `(provide 'init-completion)`
+- [x] `vertico`: `:demand t`, enable mode
+- [x] `orderless`: `:demand t`, set `completion-styles`
+- [x] `marginalia`: `:demand t`, enable mode
+- [x] `consult`: bind `C-s` → consult-line, `C-x b` → consult-buffer, `M-s r` → consult-ripgrep, `M-s f` → consult-find, `M-y` → consult-yank-pop, `M-g g` → consult-goto-line
+- [x] `embark` + `embark-consult`: bind `C-.` → embark-act, `C-;` → embark-dwim
+- [x] `corfu`: `:demand t`, auto-complete with 0.2s delay, 2-char prefix, global mode
+- [x] `cape`: add `cape-file` and `cape-dabbrev` to completion-at-point-functions
+- [x] `(provide 'init-completion)`
 
 ### Task 6: Create `lisp/init-editing.el`
 
