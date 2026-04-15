@@ -124,14 +124,14 @@ Add a fully-configured Emacs setup to the NixOS flake, split between Nix (binary
 **Files:**
 - Create: `modules/home/pkgs/emacs/lisp/init-editing.el`
 
-- [ ] `which-key`: `:demand t`, 0.5s delay
-- [ ] `electric-pair-mode` in `prog-mode` (built-in)
-- [ ] `rainbow-delimiters`: hook `prog-mode`
-- [ ] `vundo`: bind `C-x u`
-- [ ] `move-text`: bind `M-<up>`, `M-<down>`
-- [ ] `expand-region`: bind `C-=`
-- [ ] Built-in settings: `whitespace-cleanup` on save, `use-short-answers`, `save-place-mode`, `recentf-mode` (50 items), `global-auto-revert-mode`, UTF-8 defaults
-- [ ] `(provide 'init-editing)`
+- [x] `which-key`: `:demand t`, 0.5s delay
+- [x] `electric-pair-mode` in `prog-mode` (built-in)
+- [x] `rainbow-delimiters`: hook `prog-mode`
+- [x] `vundo`: bind `C-x u`
+- [x] `move-text`: bind `M-<up>`, `M-<down>`
+- [x] `expand-region`: bind `C-=`
+- [x] Built-in settings: `whitespace-cleanup` on save, `use-short-answers`, `save-place-mode`, `recentf-mode` (50 items), `global-auto-revert-mode`, UTF-8 defaults
+- [x] `(provide 'init-editing)`
 
 ### Task 7: Create `lisp/init-coding.el`
 
