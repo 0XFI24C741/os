@@ -169,10 +169,10 @@ Add a fully-configured Emacs setup to the NixOS flake, split between Nix (binary
 **Files:**
 - Create: `modules/home/pkgs/emacs/lisp/init-writing.el`
 
-- [ ] `markdown-mode`: associate `.md`, `.markdown`
-- [ ] `olivetti`: hook `org-mode` and `markdown-mode`, body width 80
-- [ ] `flyspell` (built-in): hook `text-mode` (full), hook `prog-mode` (prog-only — comments/strings)
-- [ ] `(provide 'init-writing)`
+- [x] `markdown-mode`: associate `.md`, `.markdown`
+- [x] `olivetti`: hook `org-mode` and `markdown-mode`, body width 80
+- [x] `flyspell` (built-in): hook `text-mode` (full), hook `prog-mode` (prog-only — comments/strings)
+- [x] `(provide 'init-writing)`
 
 ### Task 10: Create `lisp/init-vcs.el`
 
