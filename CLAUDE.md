@@ -53,6 +53,9 @@ flake.nix
 │   modules/home/           ← shared Home Manager configuration for user `fractal`
 │   ├── desktop/            ← DankMaterialShell (full declarative config: theming, panel, notifications, power, lock screen, fonts, launcher), cursor theme, XDG MIME defaults
 │   └── pkgs/               ← user packages (zed-editor, claude-code, ripgrep, etc.) + bash config
+│       └── emacs/          ← Emacs (emacs-pgtk + treesit grammars via Nix, elisp packages via use-package/MELPA)
+│                              Runtime deps: rust-analyzer via rustup (`rustup default stable`)
+│                              First launch: `M-x nerd-icons-install-fonts`, create `~/org/` directory
 ```
 
 **Host-specific module convention:**
