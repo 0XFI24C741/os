@@ -85,12 +85,12 @@ Add a fully-configured Emacs setup to the NixOS flake, split between Nix (binary
 **Files:**
 - Create: `modules/home/pkgs/emacs/init.el`
 
-- [ ] Configure `package-archives` (MELPA, GNU ELPA, NonGNU ELPA), call `package-initialize`
-- [ ] Add `(unless package-archive-contents (package-refresh-contents))` — prevents first-launch failures
-- [ ] Configure `use-package`: `always-ensure t`, `always-defer t`
-- [ ] Add `lisp/` to `load-path` via `user-emacs-directory`
-- [ ] `require` all modules: init-ui, init-completion, init-editing, init-coding, init-org, init-writing, init-vcs
-- [ ] `git add` new file
+- [x] Configure `package-archives` (MELPA, GNU ELPA, NonGNU ELPA), call `package-initialize`
+- [x] Add `(unless package-archive-contents (package-refresh-contents))` — prevents first-launch failures
+- [x] Configure `use-package`: `always-ensure t`, `always-defer t`
+- [x] Add `lisp/` to `load-path` via `user-emacs-directory`
+- [x] `require` all modules: init-ui, init-completion, init-editing, init-coding, init-org, init-writing, init-vcs
+- [x] `git add` new file
 
 ### Task 4: Create `lisp/init-ui.el`
 
