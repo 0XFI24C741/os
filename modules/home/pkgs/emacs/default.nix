@@ -11,7 +11,7 @@ in
     # Note: eglot will silently fail for Rust files if no rustup toolchain
     # is installed. Run `rustup default stable` after first login.
     lldb
-    (aspellWithDicts (dicts: with dicts; [ en ]))
+    (hunspellWithDicts (with hunspellDicts; [ en_US ]))
   ];
 
   xdg.configFile = {

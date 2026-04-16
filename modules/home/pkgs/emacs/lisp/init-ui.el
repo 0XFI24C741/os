@@ -25,10 +25,9 @@
 ;; If absent, Emacs silently falls back to the default monospace font.
 ;; Wrapped for daemon safety — no frame exists when the daemon starts.
 (defun my/set-fonts (&optional _frame)
-  "Set the default face to PragmataPro Mono Liga at height 170."
   (set-face-attribute 'default nil
 		      :family "PragmataPro Mono Liga"
-		      :height 160))
+		      :height 150))
 (if (daemonp)
     (add-hook 'server-after-make-frame-hook #'my/set-fonts)
   (my/set-fonts))
@@ -46,11 +45,9 @@
   (setq dashboard-items '((recents   . 5)
 			  (projects  . 5)
 			  (agenda    . 5)))
-  ;; Use initial-buffer-choice instead of dashboard-setup-startup-hook because
-  ;; the startup hook can fire after the initial buffer is already selected,
-  ;; making it unreliable.  initial-buffer-choice always wins.
+  (dashboard-setup-startup-hook)
   (setq initial-buffer-choice
-	(lambda () (get-buffer-create dashboard-buffer-name))))
+	(lambda () (get-buffer dashboard-buffer-name))))
 
 (provide 'init-ui)
 ;;; init-ui.el ends here

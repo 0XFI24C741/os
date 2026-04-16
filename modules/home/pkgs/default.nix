@@ -51,5 +51,6 @@
     wget
     tree
     calibre
+    google-chrome
   ];
 }

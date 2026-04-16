@@ -23,7 +23,10 @@
 (use-package flyspell
   :ensure nil
   :hook ((text-mode . flyspell-mode)
-         (prog-mode . flyspell-prog-mode)))
+         (prog-mode . flyspell-prog-mode))
+  :config
+  (setq ispell-program-name "hunspell")
+  (setq ispell-local-dictionary "en_US"))
 
 (provide 'init-writing)
 ;;; init-writing.el ends here

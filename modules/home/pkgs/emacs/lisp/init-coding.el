@@ -9,7 +9,6 @@
   :demand t
   :config
   (setq treesit-auto-install nil)
-  (add-to-list 'treesit-auto-exempt-modes 'nix-mode)
   (treesit-auto-add-to-auto-mode-alist)
   (global-treesit-auto-mode 1))
 

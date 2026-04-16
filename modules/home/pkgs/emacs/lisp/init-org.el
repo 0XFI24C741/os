@@ -14,6 +14,10 @@
   ;; Directories
   (org-directory "~/org")
   (org-agenda-files '("~/org"))
+  ;; Skip missing agenda files silently instead of prompting at startup —
+  ;; dashboard's agenda item otherwise blocks on a hidden minibuffer prompt
+  ;; when ~/org/ does not exist, leaving the frame unrendered until input.
+  (org-agenda-skip-unavailable-files t)
 
   ;; TODO workflow
   (org-todo-keywords
