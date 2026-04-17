@@ -5,6 +5,7 @@
     ./niri-outputs.nix
     ../../modules/system
     ../../modules/gaming
+    ../../modules/security
     inputs.home-manager.nixosModules.home-manager
   ];
 
