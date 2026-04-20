@@ -52,5 +52,7 @@
     tree
     calibre
     google-chrome
+
+    protonmail-desktop
   ];
 }
