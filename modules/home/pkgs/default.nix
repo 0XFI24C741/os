@@ -52,6 +52,7 @@
     tree
     calibre
     google-chrome
+    jetbrains.idea
 
     protonmail-desktop
   ];

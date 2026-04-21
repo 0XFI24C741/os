@@ -103,6 +103,8 @@ window-rule {
     match app-id=r#"firefox$"#
     match app-id="google-chrome"
     open-on-workspace "web"
+    open-fullscreen true
+    open-focused false
 }
 
 window-rule {
@@ -110,6 +112,7 @@ window-rule {
     match app-id="org.telegram.desktop"
     match app-id="Slack"
     open-on-workspace "chat"
+    open-focused false
 }
 
 window-rule {
