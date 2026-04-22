@@ -189,9 +189,9 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 
 ### Task 6: Build-test both host configurations
 
-- [ ] `nixos-rebuild build --flake .#feywild` — closure builds without errors
-- [ ] `nixos-rebuild build --flake .#maple` — closure builds without errors
-- [ ] if either fails: diagnose and fix before task 7. Do NOT proceed to `switch` on a broken build.
+- [x] `nixos-rebuild build --flake .#feywild` — closure builds without errors
+- [x] `nixos-rebuild build --flake .#maple` — closure builds without errors
+- [x] if either fails: diagnose and fix before task 7. Do NOT proceed to `switch` on a broken build. — both builds succeeded — diagnosis unnecessary
 
 ### Task 7: Verify acceptance criteria (still pre-switch)
 
