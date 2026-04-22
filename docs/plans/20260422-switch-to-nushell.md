@@ -174,8 +174,8 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 **Files:**
 - Modify: `modules/home/pkgs/alacritty/default.nix`
 
-- [ ] change `terminal.shell.program = "${pkgs.fish}/bin/fish";` to `terminal.shell.program = "${pkgs.nushell}/bin/nu";`
-- [ ] validate: `nix flake check` — must pass before task 5
+- [x] change `terminal.shell.program = "${pkgs.fish}/bin/fish";` to `terminal.shell.program = "${pkgs.nushell}/bin/nu";`
+- [x] validate: `nix flake check` — must pass before task 5
 
 ### Task 5: Set nushell as login shell for user `fractal`
 
