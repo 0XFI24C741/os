@@ -3,9 +3,10 @@
   imports = [
     ./alacritty
     ./bash
+    ./direnv
     ./emacs
-    ./fish
     ./git
+    ./nushell
     ./rust
     ./starship
     ./zed

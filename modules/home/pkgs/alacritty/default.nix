@@ -5,7 +5,7 @@
     settings = {
       general.import = [ "~/.config/alacritty/dank-theme.toml" ];
 
-      terminal.shell.program = "${pkgs.fish}/bin/fish";
+      terminal.shell.program = "${pkgs.nushell}/bin/nu";
 
       font = {
         normal.family = "PragmataPro Mono Liga";
