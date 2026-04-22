@@ -8,11 +8,11 @@
       format = "$directory$git_branch$git_status$rust$nix_shell$package$cmd_duration$line_break$character";
 
       directory = {
-        read_only = " 󰌾";
+        read_only = "";
       };
 
       git_branch = {
-        symbol = " ";
+        symbol = " ";
       };
 
       git_status = {
@@ -26,11 +26,11 @@
       };
 
       rust = {
-        symbol = " ";
+        symbol = " ";
       };
 
       nix_shell = {
-        symbol = " ";
+        symbol = " ";
       };
 
       package = {

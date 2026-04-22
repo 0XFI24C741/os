@@ -3,7 +3,14 @@
   programs.zed-editor = {
     enable = true;
 
-    extensions = [ "ruby" "go" "java" "nix" "rust" "html" ];
+    extensions = [
+      "ruby"
+      "go"
+      "java"
+      "nix"
+      "rust"
+      "html"
+    ];
 
     mutableUserSettings = true;
     mutableUserKeymaps = true;
@@ -15,8 +22,8 @@
         dark = "One Dark";
         light = "One Light";
       };
-      ui_font_size = 16;
-      buffer_font_size = 15;
+      ui_font_size = 17;
+      buffer_font_size = 16;
       session = {
         trust_all_worktrees = true;
       };
