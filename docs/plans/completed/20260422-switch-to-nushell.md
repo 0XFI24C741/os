@@ -111,7 +111,10 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
     '';
   };
 
-  programs.direnv.enableNushellIntegration = true;
+  programs.direnv = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
 }
 ```
 
