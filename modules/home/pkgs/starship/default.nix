@@ -3,7 +3,7 @@
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
-    enableFishIntegration = true;
+    enableNushellIntegration = true;
     settings = {
       format = "$directory$git_branch$git_status$rust$nix_shell$package$cmd_duration$line_break$character";
 

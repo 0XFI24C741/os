@@ -166,8 +166,8 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 **Files:**
 - Modify: `modules/home/pkgs/starship/default.nix`
 
-- [ ] change `enableFishIntegration = true;` to `enableNushellIntegration = true;` (leave `enableBashIntegration` intact)
-- [ ] validate: `nix flake check` — must pass before task 4
+- [x] change `enableFishIntegration = true;` to `enableNushellIntegration = true;` (leave `enableBashIntegration` intact)
+- [x] validate: `nix flake check` — must pass before task 4
 
 ### Task 4: Point alacritty at nushell
 
