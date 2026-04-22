@@ -22,8 +22,8 @@
     extraConfig = ''
       $env.config.show_banner = false
 
-      def rebuild [] { sudo nixos-rebuild switch --flake $".#(^hostname | str trim)" }
-      def rebuild-build [] { nixos-rebuild build --flake $".#(^hostname | str trim)" }
+      def rebuild [] { sudo nixos-rebuild switch --flake $".#(sys host | get hostname)" }
+      def rebuild-build [] { nixos-rebuild build --flake $".#(sys host | get hostname)" }
     '';
   };
 

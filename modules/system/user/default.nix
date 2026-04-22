@@ -14,5 +14,8 @@
     ];
   };
 
-  environment.shells = [ pkgs.nushell ];
+  environment.shells = [
+    pkgs.nushell
+    pkgs.bashInteractive
+  ];
 }

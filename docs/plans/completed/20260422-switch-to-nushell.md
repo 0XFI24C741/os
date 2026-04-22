@@ -27,7 +27,7 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 - `pkgs.nushell` (in nixpkgs-unstable)
 - home-manager's `programs.nushell` module
 - home-manager's `programs.direnv.enableNushellIntegration`
-- `pkgs.hostname` (inetutils) — external binary, used inside `rebuild` def via `^hostname`
+- nushell's native `sys host | get hostname` — used inside `rebuild` def (no external binary required)
 
 ## Development Approach
 
@@ -72,7 +72,7 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 **Key design decisions:**
 1. **Login shell = nushell** (not just interactive). User accepted the non-POSIX risk; gives a single unified shell everywhere including TTY and SSH. Bash stays installed for script compatibility and TTY rescue.
 2. **`def` for `rebuild`/`rebuild-build`, not `alias`.** Nushell aliases are parse-time — `(hostname)` wouldn't evaluate at call time. `def rebuild [] { ... }` does.
-3. **`^hostname | str trim`** to get the hostname inside the `def` body. Nushell's builtin hostname was removed; `^` forces the external coreutils binary; `str trim` drops the trailing newline.
+3. **`sys host | get hostname`** to get the hostname inside the `def` body. This is nushell's native API (returns a plain string, no trim needed), avoiding a PATH dependency on an external binary.
 4. **Drop `rm -i` / `cp -i` / `mv -i`.** Nushell's builtins are already safer than unaliased coreutils (no auto-recursive, literal globs, `--trash` available). No alias needed.
 5. **direnv hook via `programs.direnv.enableNushellIntegration = true`.** Home-manager generates the PWD-change hook that loads `use flake` envs into the current nu session — so dev shells "just work" on `cd`.
 6. **No carapace, no fzf-fish port.** Minimal parity. Add only once daily use reveals a concrete gap.
@@ -106,8 +106,8 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
     extraConfig = ''
       $env.config.show_banner = false
 
-      def rebuild [] { sudo nixos-rebuild switch --flake $".#(^hostname | str trim)" }
-      def rebuild-build [] { nixos-rebuild build --flake $".#(^hostname | str trim)" }
+      def rebuild [] { sudo nixos-rebuild switch --flake $".#(sys host | get hostname)" }
+      def rebuild-build [] { nixos-rebuild build --flake $".#(sys host | get hostname)" }
     '';
   };
 
@@ -118,7 +118,7 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 **`modules/system/user/default.nix` changes:**
 - Module signature: `{ ... }:` → `{ pkgs, ... }:`
 - Inside `users.users.fractal`: add `shell = pkgs.nushell;`
-- At module top level (sibling to `users.users.fractal`), add `environment.shells = [ pkgs.nushell ];` so nushell ends up in `/etc/shells` — required for PAM/`chsh` to accept it as a valid login shell. Bash is already picked up via `programs.bash.enable = true`, so no need to list it explicitly.
+- At module top level (sibling to `users.users.fractal`), add `environment.shells = [ pkgs.nushell pkgs.bashInteractive ];` so both shells end up in `/etc/shells` — required for PAM/`chsh` to accept them as valid login shells. Bash is already in `/etc/shells` by NixOS default (`users.defaultUserShell` → `pkgs.bashInteractive`), but listing it explicitly is defensive hygiene in case the default changes.
 
 **`modules/home/pkgs/starship/default.nix` changes:**
 - `enableFishIntegration = true;` → `enableNushellIntegration = true;`
@@ -196,7 +196,7 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 ### Task 7: Verify acceptance criteria (still pre-switch)
 
 - [x] confirm all files from the "Context" section are changed as described
-- [x] re-read the new `nushell/default.nix` to sanity-check the `def` syntax (string-interpolation `$"..."`, external `^hostname`, `| str trim`)
+- [x] re-read the new `nushell/default.nix` to sanity-check the `def` syntax (string-interpolation `$"..."`, native `sys host | get hostname`)
 - [x] run `nix flake check` one final time
 - [x] (Optional) skim for any remaining live references to fish: `grep -rnE 'pkgs\.fish\b|programs\.fish\b|enableFishIntegration' modules/` — no hits expected.
 
