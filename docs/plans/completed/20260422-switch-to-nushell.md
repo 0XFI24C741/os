@@ -38,7 +38,7 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 - Complete each task fully before moving to the next.
 - After every Nix change: `git add` new/changed files, then run `nix flake check`. A green check is the gate.
 - **Do NOT run `nixos-rebuild switch` until all build validations pass**, and only switch on one host at a time so the other host remains a rescue option if the switched host's login shell misbehaves.
-- Keep bash enabled throughout — `programs.bash.enable = true` in `modules/home/pkgs/bash/default.nix` stays untouched so `chsh`-style recovery is available from a TTY.
+- Keep bash installed throughout — `programs.bash.enable = true` in `modules/home/pkgs/bash/default.nix` (home-manager-level) stays untouched so bash is configured for interactive use. TTY rescue works because `pkgs.bashInteractive` lands in `/etc/shells` via the explicit `environment.shells` addition (see Task 5) — home-manager's `programs.bash` does not itself populate `/etc/shells`.
 
 ## Testing Strategy
 
@@ -118,7 +118,7 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 **`modules/system/user/default.nix` changes:**
 - Module signature: `{ ... }:` → `{ pkgs, ... }:`
 - Inside `users.users.fractal`: add `shell = pkgs.nushell;`
-- At module top level (sibling to `users.users.fractal`), add `environment.shells = [ pkgs.nushell pkgs.bashInteractive ];` so both shells end up in `/etc/shells` — required for PAM/`chsh` to accept them as valid login shells. Bash is already in `/etc/shells` by NixOS default (`users.defaultUserShell` → `pkgs.bashInteractive`), but listing it explicitly is defensive hygiene in case the default changes.
+- At module top level (sibling to `users.users.fractal`), add `environment.shells = [ pkgs.nushell pkgs.bashInteractive ];` so both shells end up in `/etc/shells` — required for PAM/`chsh` to accept them as valid login shells. `environment.shells` is what populates `/etc/shells`; `users.defaultUserShell` only sets the default shell for users who don't override `shell` and does not touch `/etc/shells`. Listing bash explicitly is defensive hygiene to guarantee the rescue shell remains available.
 
 **`modules/home/pkgs/starship/default.nix` changes:**
 - `enableFishIntegration = true;` → `enableNushellIntegration = true;`
@@ -184,7 +184,7 @@ Motivation: unified modern shell across interactive and `nix develop` / `nix-she
 
 - [x] change the module signature from `{ ... }:` to `{ pkgs, ... }:`
 - [x] add `shell = pkgs.nushell;` inside `users.users.fractal` (place it below `description`)
-- [x] add `environment.shells = [ pkgs.nushell ];` at module top level (sibling to `users.users.fractal`) — ensures nu lands in `/etc/shells` for PAM/`chsh`
+- [x] add `environment.shells = [ pkgs.nushell pkgs.bashInteractive ];` at module top level (sibling to `users.users.fractal`) — ensures both nu and bash land in `/etc/shells` for PAM/`chsh`
 - [x] validate: `nix flake check` — must pass before task 6
 
 ### Task 6: Build-test both host configurations

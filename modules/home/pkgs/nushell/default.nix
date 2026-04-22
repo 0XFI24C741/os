@@ -27,5 +27,8 @@
     '';
   };
 
-  programs.direnv.enableNushellIntegration = true;
+  programs.direnv = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
 }
