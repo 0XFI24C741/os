@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ./alacritty
+    ./ghostty
     ./bash
     ./direnv
     ./emacs

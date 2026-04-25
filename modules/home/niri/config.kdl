@@ -102,7 +102,7 @@ workspace "master"
 window-rule {
     match app-id=r#"firefox$"#
     match app-id="google-chrome"
-    open-fullscreen true
+    open-maximized true
     open-focused false
 }
 
@@ -141,7 +141,7 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
     // Mod+D is owned by DMS (dms/binds.kdl → spotlight). No bind here.
     // Super+Alt+L dropped — swaylock not installed; DMS has its own lock screen.
 

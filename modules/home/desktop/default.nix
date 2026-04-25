@@ -58,7 +58,8 @@
       matugenScheme = "scheme-tonal-spot";
       runDmsMatugenTemplates = true;
       runUserMatugenTemplates = true;
-      matugenTemplateAlacritty = true;
+      matugenTemplateAlacritty = false;
+      matugenTemplateGhostty = true;
       matugenTemplateNiri = true;
       matugenTemplateFirefox = true;
       matugenTemplateGtk = true;
@@ -171,6 +172,8 @@
     };
   };
 
+  home.sessionVariables.TERMINAL = "ghostty";
+
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;
@@ -205,6 +208,7 @@
           "x-scheme-handler/chrome" = firefox;
           "x-scheme-handler/http" = firefox;
           "x-scheme-handler/https" = firefox;
+          "x-scheme-handler/terminal" = "com.mitchellh.ghostty.desktop";
         };
     };
     configFile."mimeapps.list".force = true;
