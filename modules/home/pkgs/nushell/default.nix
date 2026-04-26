@@ -16,10 +16,14 @@
       # Nix shells
       nd = "nix develop -c nu";
       nsh = "nix-shell --command nu";
+
+      zj = "zellij";
     };
 
     extraConfig = ''
       $env.config.show_banner = false
+
+      if ($env | get -o ZELLIJ) == null { zellij }
 
       def rebuild [] { sudo nixos-rebuild switch --flake $".#(sys host | get hostname)" }
       def rebuild-build [] { nixos-rebuild build --flake $".#(sys host | get hostname)" }

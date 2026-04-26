@@ -1,0 +1,10 @@
+default_mode "locked"
+
+keybinds {
+    locked {
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt l" { MoveFocus "Right"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt j" { MoveFocus "Down"; }
+    }
+}

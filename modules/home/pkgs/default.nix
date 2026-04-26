@@ -9,6 +9,7 @@
     ./nushell
     ./rust
     ./zed
+    ./zellij
   ];
 
   home.packages = with pkgs; [
@@ -46,7 +47,6 @@
     hyperfine
     gitui
     yazi
-    zellij
     curl
     wget
     tree
