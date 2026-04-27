@@ -3,9 +3,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      theme = "dankcolors";
-
-      command = "${pkgs.nushell}/bin/nu";
+      config-file = "?themes/dankcolors";
 
       font-family = "PragmataPro Mono Liga";
       font-size = 13;
