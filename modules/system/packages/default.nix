@@ -14,6 +14,7 @@
     kitty
     helix
     claude-code
+    codex
     google-cloud-sdk
     google-cloud-sql-proxy
 

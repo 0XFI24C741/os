@@ -1,10 +1,8 @@
-{ inputs, ... }:
+{ ... }:
 {
   imports = [
     ./hardware-configuration.nix
     ../../modules/system
-    inputs.home-manager.nixosModules.home-manager
-
   ];
 
   networking.hostName = "feywild";
@@ -12,20 +10,4 @@
   # LUKS swap unlock (host-specific)
   boot.initrd.luks.devices."luks-dac4e371-be5c-4224-b2e1-e531f5affdc0".device =
     "/dev/disk/by-uuid/dac4e371-be5c-4224-b2e1-e531f5affdc0";
-
-  home-manager.users."fractal" = {
-    imports = [ ../../modules/home ];
-
-    home = {
-      username = "fractal";
-      homeDirectory = "/home/fractal";
-      stateVersion = "25.11";
-    };
-  };
-
-  home-manager.extraSpecialArgs = {
-    inherit inputs;
-    username = "fractal";
-    realname = "Arto Levi";
-  };
 }

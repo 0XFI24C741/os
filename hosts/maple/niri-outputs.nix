@@ -1,6 +1,6 @@
 { ... }:
 {
-  # Override DMS's auto-generated niri outputs file to pin DP-2 at scale 1.5.
+  # Override DMS's auto-generated niri outputs file to pin DP-2 at scale 1.25.
   # DMS normally writes this file itself from its display config state, but
   # home-manager replaces it with a nix-store symlink so this wins.
   # Host-specific: the output name and mode only apply to maple's LG 4K panel.
