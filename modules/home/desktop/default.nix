@@ -16,6 +16,8 @@
     };
   };
 
+  systemd.user.services.dms.Service.SuccessExitStatus = "143";
+
   imports = [
     inputs.dms.homeModules.dank-material-shell
   ];
