@@ -4,6 +4,7 @@
     cups-pk-helper
     file-roller
     firefox
+    gnome-disk-utility
     nautilus
     playerctl
     spotify

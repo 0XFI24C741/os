@@ -12,8 +12,11 @@
 
   networking.hostName = "maple";
 
-  # Intel I225-V (rev 01) fix: disable ASPM and EEE to prevent network drops
-  boot.kernelParams = [ "pcie_port_pm=off" ];
+  # Intel I225-V (rev 01) fix: disable PCIe power saving and EEE to prevent network drops
+  boot.kernelParams = [
+    "pcie_aspm=off"
+    "pcie_port_pm=off"
+  ];
   systemd.services.fix-i225v = {
     description = "Disable EEE on Intel I225-V to prevent connection drops";
     after = [ "network-pre.target" ];

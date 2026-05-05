@@ -3,7 +3,7 @@
   environment.systemPackages = with pkgs; [
     # --- Network Analysis ---
     nmap
-    wireshark
+    #wireshark
     tcpdump
     netcat-gnu
 
@@ -46,7 +46,7 @@
   ];
 
   # Allow Wireshark packet capture without root
-  programs.wireshark.enable = true;
+  # programs.wireshark.enable = true;
 
   # Add user to wireshark group for non-root captures
   users.users."fractal".extraGroups = [ "wireshark" ];
