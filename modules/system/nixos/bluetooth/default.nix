@@ -1,17 +1,10 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
-
-  services.blueman.enable = true;
-
-  systemd.user.services.blueman-applet.serviceConfig.ExecStart = lib.mkForce [
-    ""
-    "${pkgs.blueman}/bin/blueman-applet"
-  ];
 
   systemd.services.bluetooth-unblock = {
     description = "Unblock Bluetooth before BlueZ starts";
