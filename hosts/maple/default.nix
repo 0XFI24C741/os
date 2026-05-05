@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./bluetooth.nix
     ./hardware-configuration.nix
     ./niri-outputs.nix
     ../../modules/system
