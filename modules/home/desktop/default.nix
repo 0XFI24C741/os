@@ -150,7 +150,6 @@
             "weather"
           ];
           rightWidgets = [
-            "systemTray"
             "clipboard"
             "cpuUsage"
             "memUsage"
