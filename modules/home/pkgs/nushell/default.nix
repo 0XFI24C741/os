@@ -27,6 +27,13 @@ in
 
       def flake-ref [] { $".#(sys host | get hostname)" }
 
+      def flake-bump [] {
+        git add flake.lock
+        if $env.LAST_EXIT_CODE == 0 {
+          git commit -m "flake bump"
+        }
+      }
+
       def --wrapped rebuild [...rest] {
         sudo nixos-rebuild switch --flake (flake-ref) ...$rest
       }
