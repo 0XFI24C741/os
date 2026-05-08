@@ -25,34 +25,11 @@ in
     extraConfig = ''
       $env.config.show_banner = false
 
-      def flake-ref [] { $".#(sys host | get hostname)" }
-
-      def flake-bump [] {
-        git add flake.lock
-        if $env.LAST_EXIT_CODE == 0 {
-          git commit -m "flake bump"
-        }
-      }
-
-      def --wrapped rebuild [...rest] {
-        sudo nixos-rebuild switch --flake (flake-ref) ...$rest
-      }
-
-      def --wrapped rebuild-build [...rest] {
-        nixos-rebuild build --flake (flake-ref) ...$rest
-      }
-
-      def --wrapped nd [...rest] {
-        nix develop ...$rest -c nu
-      }
-
-      def --wrapped nsh [...rest] {
-        nix-shell ...$rest --command nu
-      }
-
+      use ~/.config/nushell/commands.nu *
       source ~/.config/nushell/prompt.nu
     '';
   };
 
+  home.file.".config/nushell/commands.nu".source = ./commands.nu;
   home.file.".config/nushell/prompt.nu".source = ./prompt.nu;
 }
