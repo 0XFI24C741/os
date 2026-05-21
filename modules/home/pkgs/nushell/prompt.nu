@@ -1,4 +1,4 @@
-# Two-line Nushell prompt: directory + git + nix shell on line 1, ❯ on line 2.
+# Two-line Nushell prompt: directory + git + nix shell on line 1, > on line 2.
 
 def __prompt_dir [] {
     let home = $env.HOME
@@ -55,8 +55,8 @@ $env.PROMPT_COMMAND_RIGHT = ""
 
 $env.PROMPT_INDICATOR = {||
     let color = if $env.LAST_EXIT_CODE == 0 { ansi green } else { ansi red }
-    $"($color)❯(ansi reset) "
+    $"($color)>(ansi reset) "
 }
 $env.PROMPT_INDICATOR_VI_INSERT = $env.PROMPT_INDICATOR
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| $"(ansi yellow)❮(ansi reset) " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| $"(ansi yellow)<(ansi reset) " }
 $env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }

@@ -35,7 +35,7 @@
         dark = "One Dark";
         light = "One Light";
       };
-      buffer_font_family = "PragmataPro Mono Liga";
+      buffer_font_family = "Fantasque Sans Mono";
       ui_font_size = 17;
       buffer_font_size = 16;
 

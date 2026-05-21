@@ -66,6 +66,14 @@ let
             $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/fractal-login.jpg
         '';
       });
+
+  fantasqueSansMonoNoLoopK = pkgs.fantasque-sans-mono.overrideAttrs (_old: {
+    src = pkgs.fetchzip {
+      url = "https://github.com/belluzj/fantasque-sans/releases/download/v1.8.0/FantasqueSansMono-NoLoopK.zip";
+      stripRoot = false;
+      hash = "sha256-RnnyhP2zdRGk4XUe4fSibMFBhZmMqoKziE6TzcCSiL0=";
+    };
+  });
 in
 
 {
@@ -143,6 +151,7 @@ in
     ubuntu-classic
     nerd-fonts.ubuntu-mono
     lmodern
+    fantasqueSansMonoNoLoopK
     departure-mono
   ];
 }
