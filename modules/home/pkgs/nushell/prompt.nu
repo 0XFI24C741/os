@@ -38,8 +38,8 @@ def __prompt_git [] {
     } else { { behind: 0, ahead: 0 } }
 
     mut bits = [$"(ansi purple) ($branch)(ansi reset)"]
-    if $counts.ahead  > 0 { $bits = ($bits | append $"(ansi green)⇡($counts.ahead)(ansi reset)") }
-    if $counts.behind > 0 { $bits = ($bits | append $"(ansi green)⇣($counts.behind)(ansi reset)") }
+    if $counts.ahead  > 0 { $bits = ($bits | append $"(ansi green)↑($counts.ahead)(ansi reset)") }
+    if $counts.behind > 0 { $bits = ($bits | append $"(ansi green)↓($counts.behind)(ansi reset)") }
     if $staged        > 0 { $bits = ($bits | append $"(ansi green)+($staged)(ansi reset)") }
     if $modified      > 0 { $bits = ($bits | append $"(ansi yellow)!($modified)(ansi reset)") }
     if $untracked     > 0 { $bits = ($bits | append $"(ansi red)?($untracked)(ansi reset)") }

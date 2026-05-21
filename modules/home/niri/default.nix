@@ -23,8 +23,7 @@ let
 in
 {
   xdg.configFile."niri/config.kdl".source =
-    config.lib.file.mkOutOfStoreSymlink
-      "${config.home.homeDirectory}/Developer/os/modules/home/niri/config.kdl";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/Developer/os/modules/home/niri/config.kdl";
 
   # niri parses include targets before DMS starts. Create mutable placeholders
   # after Home Manager links its files so DMS can still replace them at runtime.

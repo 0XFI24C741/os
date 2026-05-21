@@ -57,7 +57,7 @@ flake.nix
     ├── default.nix         ← shared/base HM entrypoint
     ├── desktop/            ← DMS, graphical helpers, MIME defaults, GTK/Qt theming
     ├── niri/               ← live-editable niri config
-    └── pkgs/               ← shared user packages (shells, editors, apps); see pkgs/emacs/ for Emacs specifics
+    └── pkgs/               ← shared user packages (shells, editors, apps)
 ```
 
 **Host and role convention:**
@@ -76,10 +76,10 @@ flake.nix
 - Nix flakes only evaluate git-tracked files. New files must be `git add`-ed before `nix flake check` or `nixos-rebuild` can see them — otherwise you get "path does not exist" errors.
 
 **Important notes:**
-- `configuration.nix` in the repo root is the original generated file; it is **not imported by the flake** and is kept for reference only. All active configuration flows through `hosts/<hostname>/`.
+- All active configuration flows through `hosts/<hostname>/`; there is no root `configuration.nix`.
 - Host-specific config (LUKS, hardware) lives in `hosts/<hostname>/`; shared modules live in `modules/`.
 - System modules use `home-manager.useGlobalPkgs = true` and `home-manager.useUserPackages = true`.
 - `specialArgs` passes `{ inputs }` to system modules and `{ inputs; username; realname }` to home-manager modules.
-- Two LSP servers for Nix are installed: `nixd` (preferred) and `nil`.
+- `nixd` is installed as the Nix language server.
 - Nushell is the user's login shell (set via `users.users.fractal.shell` in `modules/system/user/default.nix`); bash is kept installed as a rescue shell.
 - Evaluation warnings (e.g., deprecated `xorg.*` renames) may originate from upstream flake inputs — particularly `quickshell` (transitive dep of DankMaterialShell) which is pinned to a specific rev and can lag behind nixpkgs-unstable API changes. If `grep` finds nothing locally, investigate upstream inputs.

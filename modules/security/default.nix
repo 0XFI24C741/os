@@ -1,9 +1,21 @@
 { pkgs, ... }:
+let
+  # nixpkgs d233902 has a stale fixed-output hash for this source archive.
+  # Keep the package available until the pinned nixpkgs revision is bumped past
+  # the upstream fix.
+  johnFixed = pkgs.john.overrideAttrs (_old: {
+    src = pkgs.fetchFromGitHub {
+      owner = "openwall";
+      repo = "john";
+      rev = "f514ece8ec4ae5e38ad75aaa322eac86d73dcd76";
+      hash = "sha256-zO1/KUJe3LvYCGlwVpNg5uDwPRD0ql/7anErb7tywC0=";
+    };
+  });
+in
 {
   environment.systemPackages = with pkgs; [
     # --- Network Analysis ---
     nmap
-    #wireshark
     tcpdump
     netcat-gnu
 
@@ -23,7 +35,7 @@
     exploitdb
 
     # --- Password & Crypto ---
-    john
+    johnFixed
     hashcat
     hydra
 
@@ -44,10 +56,4 @@
     p7zip
     xxd
   ];
-
-  # Allow Wireshark packet capture without root
-  # programs.wireshark.enable = true;
-
-  # Add user to wireshark group for non-root captures
-  users.users."fractal".extraGroups = [ "wireshark" ];
 }

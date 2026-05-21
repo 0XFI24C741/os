@@ -1,69 +1,71 @@
 { config, pkgs, ... }:
 
 let
-  sddmTheme = (pkgs.sddm-astronaut.override {
-    embeddedTheme = "astronaut";
-    themeConfig = {
-      Background = "Backgrounds/fractal-login.jpg";
-      DimBackground = "0.22";
-      DimBackgroundColor = "#07110A";
-      CropBackground = "true";
+  sddmTheme =
+    (pkgs.sddm-astronaut.override {
+      embeddedTheme = "astronaut";
+      themeConfig = {
+        Background = "Backgrounds/fractal-login.jpg";
+        DimBackground = "0.22";
+        DimBackgroundColor = "#07110A";
+        CropBackground = "true";
 
-      Font = "Ubuntu";
-      FontSize = "12";
-      RoundCorners = "14";
-      HeaderText = config.networking.hostName;
+        Font = "Ubuntu";
+        FontSize = "12";
+        RoundCorners = "14";
+        HeaderText = config.networking.hostName;
 
-      PartialBlur = "true";
-      Blur = "1.0";
-      BlurMax = "36";
-      HaveFormBackground = "true";
-      FormBackgroundColor = "#0B120C";
-      FormPosition = "left";
-      VirtualKeyboardPosition = "left";
+        PartialBlur = "true";
+        Blur = "1.0";
+        BlurMax = "36";
+        HaveFormBackground = "true";
+        FormBackgroundColor = "#0B120C";
+        FormPosition = "left";
+        VirtualKeyboardPosition = "left";
 
-      HeaderTextColor = "#BBD99B";
-      DateTextColor = "#C7D9B8";
-      TimeTextColor = "#EEF7E9";
-      LoginFieldBackgroundColor = "#111A12";
-      PasswordFieldBackgroundColor = "#111A12";
-      LoginFieldTextColor = "#EEF7E9";
-      PasswordFieldTextColor = "#EEF7E9";
-      UserIconColor = "#DDECD6";
-      PasswordIconColor = "#DDECD6";
-      PlaceholderTextColor = "#A7B89A";
-      WarningColor = "#F2B8B5";
-      LoginButtonTextColor = "#0D150E";
-      LoginButtonBackgroundColor = "#BBD99B";
-      SystemButtonsIconsColor = "#DDECD6";
-      SessionButtonTextColor = "#DDECD6";
-      VirtualKeyboardButtonTextColor = "#DDECD6";
-      DropdownTextColor = "#EEF7E9";
-      DropdownSelectedBackgroundColor = "#283B22";
-      DropdownBackgroundColor = "#0B120C";
-      HighlightTextColor = "#0D150E";
-      HighlightBackgroundColor = "#BBD99B";
-      HighlightBorderColor = "#BBD99B";
-      HoverUserIconColor = "#BBD99B";
-      HoverPasswordIconColor = "#BBD99B";
-      HoverSystemButtonsIconsColor = "#BBD99B";
-      HoverSessionButtonTextColor = "#BBD99B";
-      HoverVirtualKeyboardButtonTextColor = "#BBD99B";
+        HeaderTextColor = "#BBD99B";
+        DateTextColor = "#C7D9B8";
+        TimeTextColor = "#EEF7E9";
+        LoginFieldBackgroundColor = "#111A12";
+        PasswordFieldBackgroundColor = "#111A12";
+        LoginFieldTextColor = "#EEF7E9";
+        PasswordFieldTextColor = "#EEF7E9";
+        UserIconColor = "#DDECD6";
+        PasswordIconColor = "#DDECD6";
+        PlaceholderTextColor = "#A7B89A";
+        WarningColor = "#F2B8B5";
+        LoginButtonTextColor = "#0D150E";
+        LoginButtonBackgroundColor = "#BBD99B";
+        SystemButtonsIconsColor = "#DDECD6";
+        SessionButtonTextColor = "#DDECD6";
+        VirtualKeyboardButtonTextColor = "#DDECD6";
+        DropdownTextColor = "#EEF7E9";
+        DropdownSelectedBackgroundColor = "#283B22";
+        DropdownBackgroundColor = "#0B120C";
+        HighlightTextColor = "#0D150E";
+        HighlightBackgroundColor = "#BBD99B";
+        HighlightBorderColor = "#BBD99B";
+        HoverUserIconColor = "#BBD99B";
+        HoverPasswordIconColor = "#BBD99B";
+        HoverSystemButtonsIconsColor = "#BBD99B";
+        HoverSessionButtonTextColor = "#BBD99B";
+        HoverVirtualKeyboardButtonTextColor = "#BBD99B";
 
-      HideVirtualKeyboard = "true";
-      ForceLastUser = "true";
-      PasswordFocus = "true";
-      TranslatePlaceholderUsername = "user";
-      TranslatePlaceholderPassword = "password";
-      TranslateLogin = "login";
-    };
-  }).overrideAttrs (old: {
-    installPhase = old.installPhase + ''
-      chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds
-      cp ${../../../assets/wallpapers/26.jpg} \
-        $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/fractal-login.jpg
-    '';
-  });
+        HideVirtualKeyboard = "true";
+        ForceLastUser = "true";
+        PasswordFocus = "true";
+        TranslatePlaceholderUsername = "user";
+        TranslatePlaceholderPassword = "password";
+        TranslateLogin = "login";
+      };
+    }).overrideAttrs
+      (old: {
+        installPhase = old.installPhase + ''
+          chmod u+w $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds
+          cp ${../../../assets/wallpapers/26.jpg} \
+            $out/share/sddm/themes/sddm-astronaut-theme/Backgrounds/fractal-login.jpg
+        '';
+      });
 in
 
 {
@@ -90,7 +92,10 @@ in
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
     ];
-    config.common.default = [ "gnome" "gtk" ];
+    config.common.default = [
+      "gnome"
+      "gtk"
+    ];
   };
 
   services.gnome.gnome-keyring.enable = true;
@@ -108,7 +113,10 @@ in
   services.displayManager.sddm = {
     enable = true;
     theme = "${sddmTheme}/share/sddm/themes/sddm-astronaut-theme";
-    extraPackages = [ sddmTheme ] ++ (with pkgs.kdePackages; [
+    extraPackages = [
+      sddmTheme
+    ]
+    ++ (with pkgs.kdePackages; [
       qtmultimedia
       qtsvg
       qtvirtualkeyboard
@@ -135,5 +143,6 @@ in
     ubuntu-classic
     nerd-fonts.ubuntu-mono
     lmodern
+    departure-mono
   ];
 }

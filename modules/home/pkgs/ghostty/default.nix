@@ -6,7 +6,7 @@
       # Optional include so Ghostty still starts before DMS generates the theme file.
       config-file = "?themes/dankcolors";
 
-      font-family = "PragmataPro Mono Liga";
+      font-family = "Departure Mono";
       font-size = 13;
       bold-is-bright = true;
 
