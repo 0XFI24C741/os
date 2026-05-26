@@ -4,6 +4,7 @@
     ./ghostty
     ./bash
     ./direnv
+    ./emacs
     ./git
     ./nushell
     ./obsidian
